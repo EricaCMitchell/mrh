@@ -18,7 +18,7 @@ cmake_minimum_required (VERSION 2.8.11)
 set (CMAKE_VERBOSE_MAKEFILE OFF)
 
 # Whether or not to compile with MKL
-option (MKL "Compile using the MKL" OFF)
+option (MKL "Compile using the MKL" ON)
 if (MKL)
     set ( ENV{BLA_VENDOR} "Intel10_64lp" )
 endif (MKL)

@@ -1,0 +1,15 @@
+CASSCF high-spin energy: -37.70584532
+CASSCF (vertical) low-spin energy: -37.64753057
+CASSCF (relaxed) low-spin energy: -37.64866822
+CASSCF vertical excitation energy (eV): 1.58682592
+CASSCF relaxed excitation energy (eV): 1.55586887
+MC-PDFT (tPBE) high-spin energy: -37.79301496
+MC-PDFT (tPBE) (vertical) low-spin energy: -37.75287960
+MC-PDFT (tPBE) (relaxed) low-spin energy: -37.75389948
+MC-PDFT (tPBE) vertical excitation energy (eV): 1.09213955
+MC-PDFT (tPBE) relaxed excitation energy (eV): 1.06438709
+MC-PDFT (tBLYP) high-spin energy: -37.84286014
+MC-PDFT (tBLYP) (vertical) low-spin energy: -37.80453204
+MC-PDFT (tBLYP) (relaxed) low-spin energy: -37.80557311
+MC-PDFT (tBLYP) vertical excitation energy (eV): 1.04296126
+MC-PDFT (tBLYP) relaxed excitation energy (eV): 1.01463241

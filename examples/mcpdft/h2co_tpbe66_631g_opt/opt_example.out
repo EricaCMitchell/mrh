@@ -1,0 +1,60 @@
+rCO = 1.2101 Angstrom
+rCH1 = 1.0815 Angstrom
+rCH2 = 1.0815 Angstrom
+tOCH1 = 121.71 degrees
+tOCH2 = 121.71 degrees
+tHCH = 116.59 degrees
+rCO = 1.2382 Angstrom
+rCH1 = 1.1110 Angstrom
+rCH2 = 1.1110 Angstrom
+tOCH1 = 123.46 degrees
+tOCH2 = 121.71 degrees
+tHCH = 114.83 degrees
+rCO = 1.2428 Angstrom
+rCH1 = 1.1126 Angstrom
+rCH2 = 1.1133 Angstrom
+tOCH1 = 119.60 degrees
+tOCH2 = 123.73 degrees
+tHCH = 116.67 degrees
+rCO = 1.2415 Angstrom
+rCH1 = 1.1105 Angstrom
+rCH2 = 1.1105 Angstrom
+tOCH1 = 122.15 degrees
+tOCH2 = 122.21 degrees
+tHCH = 115.64 degrees
+rCO = 1.2419 Angstrom
+rCH1 = 1.1100 Angstrom
+rCH2 = 1.1100 Angstrom
+tOCH1 = 122.14 degrees
+tOCH2 = 122.15 degrees
+tHCH = 115.72 degrees
+rCO = 1.2421 Angstrom
+rCH1 = 1.1099 Angstrom
+rCH2 = 1.1099 Angstrom
+tOCH1 = 122.12 degrees
+tOCH2 = 122.12 degrees
+tHCH = 115.75 degrees
+rCO = 1.2421 Angstrom
+rCH1 = 1.1099 Angstrom
+rCH2 = 1.1099 Angstrom
+tOCH1 = 122.12 degrees
+tOCH2 = 122.12 degrees
+tHCH = 115.75 degrees
+
+tPBE(6,6)/6-31g optimized geometry of formaldehdye:
+rCO = 1.2421 Angstrom
+rCH1 = 1.1099 Angstrom
+rCH2 = 1.1099 Angstrom
+tOCH1 = 122.12 degrees
+tOCH2 = 122.12 degrees
+tHCH = 115.75 degrees
+None
+
+OpenMolcas's opinion using analytical gradient implementation (note OpenMolcas and PySCF have different quadrature grids):
+rCO = 1.2421 Angstrom
+rCH1 = 1.1099 Angstrom
+rCH2 = 1.1099 Angstrom
+tOCH1 = 122.12 degrees
+tOCH2 = 122.12 degrees
+tHCH = 115.75 degrees
+None
