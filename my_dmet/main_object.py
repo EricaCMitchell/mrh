@@ -1006,12 +1006,11 @@ class dmet:
 
         nelec_wmas_current = sum ([f.nelec_as for f in self.fragments if f.norbs_as > 0])
         norbs_wmas_current = sum ([f.norbs_as for f in self.fragments if f.norbs_as > 0])
-        assert ((self.ints.nelec_tot - nelec_wmas_current) % 2 == 0), 'parity problem: {} of {} electrons active in currently'.format (nelec_wmas_target, self.ints.nelec_tot)
-        ncore_current = (self.ints.nelec_tot - nelec_wmas_current) // 2
-        nocc_current = ncore_current + norbs_wmas_current
-        print ("ncore_current = {}; nocc_current = {}".format (ncore_current, nocc_current))
-
         if norbs_wmas_current > 0:
+            assert ((self.ints.nelec_tot - nelec_wmas_current) % 2 == 0), 'parity problem: {} of {} electrons active in currently'.format (nelec_wmas_current, self.ints.nelec_tot)
+            ncore_current = (self.ints.nelec_tot - nelec_wmas_current) // 2
+            nocc_current = ncore_current + norbs_wmas_current
+            print ("ncore_current = {}; nocc_current = {}".format (ncore_current, nocc_current))
             wmas2ao_current = (self.ints.ao2loc @ loc2wmas_current).conjugate ().T
             amo_coeff = mo_coeff[:,ncore_current:nocc_current]
             ovlp = wmas2ao_current @ self.ints.ao_ovlp @ amo_coeff
@@ -1019,6 +1018,9 @@ class dmet:
             assert (np.isclose (ovlp, 1)), 'unless replace=True, mo_coeff must contain current active orbitals at range {}:{} (err={})'.format (ncore_current,nocc_current, ovlp-1)
             if caslst is not None and len (caslst) > 0:
                 assert (np.all (np.isin (list(range(ncore_current+1,nocc_current+1)), caslst))), 'caslst must contain range {}:{} inclusive ({})'.format (ncore_current+1, nocc_current, caslst)
+        else:
+            ncore_current = nocc_current =(self.ints.nelec_tot+1)//2
+
 
         if caslst is not None and len (caslst) == 0: caslst = None
         if caslst is not None and cas_irrep_nocc is not None:
@@ -1233,6 +1235,19 @@ class dmet:
         kwargs['loc2wmas'] = np.concatenate ([frag.loc2amo for frag in self.fragments], axis=1)
         return self.ints.get_trial_nos (**kwargs)
 
+    def void_symmetry (self):
+        print ("Voiding symmetry")
+        for f in self.fragments:
+            f.groupname = 'C1'
+            f.loc2symm = [np.eye (self.norbs_tot)]           
+            f.ir_names = ['A']
+            f.ir_ids   = [0]
+            f.wfnsym   = 'A'
+        self.ints.loc2symm = [np.eye (self.norbs_tot)]
+        self.ints.symmetry = False
+        self.ints.wfnsym = 'A'
+        self.ints.ir_names = ['A']
+        self.ints.ir_ids = [0]
 
     def check_fragment_symmetry_breaking (self, verbose=True, do_break=False):
         if not self.ints.mol.symmetry:
@@ -1264,13 +1279,8 @@ class dmet:
 
         if (not symmetry) and do_break and np.any (f.symmetry for f in self.fragments):
             if self.enforce_symmetry: raise RuntimeError ("Fragmentation pattern of molecule breaks symmetry!")
-            print ("Fragmentation pattern of molecule broke point-group symmetry! Voiding symmetry...")
-            for f in self.fragments:
-                f.groupname = 'C1'
-                f.loc2symm = [np.eye (self.norbs_tot)]           
-                f.ir_names = ['A']
-                f.ir_ids   = [0]
-                f.wfnsym   = 'A'
+            print ("Fragmentation pattern of molecule broke point-group symmetry!")
+            self.void_symmetry ()
         elif symmetry and do_break:
             for f in self.fragments:
                 f.enforce_symmetry = False if f.imp_solver_name == 'dummy RHF' else self.enforce_symmetry
